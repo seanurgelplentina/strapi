@@ -26,7 +26,7 @@ const strapiVersion = packageJSON.version;
 
 const AuthenticatedApp = () => {
   const { setGuidedTourVisibility } = useGuidedTour();
-  const toggleNotification = useNotification();
+  // const toggleNotification = useNotification();
   const setGuidedTourVisibilityRef = useRef(setGuidedTourVisibility);
   const userInfo = auth.getUserInfo();
   const userName = get(userInfo, 'username') || getFullName(userInfo.firstname, userInfo.lastname);
@@ -41,7 +41,7 @@ const AuthenticatedApp = () => {
     { queryKey: 'app-infos', queryFn: fetchAppInfo },
     {
       queryKey: 'strapi-release',
-      queryFn: () => fetchStrapiLatestRelease(toggleNotification),
+      queryFn: () => fetchStrapiLatestRelease(() => {}),
       enabled: showReleaseNotification,
       initialData: strapiVersion,
     },
